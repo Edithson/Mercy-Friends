@@ -12,7 +12,16 @@ import { showToast } from './modules/toast.js';
 import { toggleMobileMenu, toggleSearchBar, handleGlobalSearch } from './modules/navigation.js';
 import { switchAboutTab } from './modules/about.js';
 import { renderThemes, openThemeModal } from './modules/themes.js';
-import { filterCountries, selectCountry, renderCountriesPortfolio, supportCountry } from './modules/portfolio.js';
+import {
+    filterCountries,
+    selectCountry,
+    renderCountriesPortfolio,
+    supportCountry,
+    zoomMapIn,
+    zoomMapOut,
+    resetMapZoom,
+    initWorldMapEvents
+} from './modules/portfolio.js';
 import { renderProjects, resetProjectFilters, openProjectModal } from './modules/projects.js';
 import {
     donationState,
@@ -76,6 +85,10 @@ Object.assign(window, {
     selectCountry,
     renderCountriesPortfolio,
     supportCountry,
+    zoomMapIn,
+    zoomMapOut,
+    resetMapZoom,
+    initWorldMapEvents,
 
     // Projets
     renderProjects,
@@ -119,6 +132,7 @@ Object.assign(window, {
 document.addEventListener('DOMContentLoaded', () => {
     renderThemes();
     renderCountriesPortfolio();
+    initWorldMapEvents();
     renderProjects();
     updateDonationImpactUI();
     initCookieBanner();

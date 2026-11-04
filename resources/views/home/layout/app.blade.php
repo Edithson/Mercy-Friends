@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>@yield('title', 'Mercy Friends — Ensemble contre la faim et l\'exclusion')</title>
+        <title>@yield('title', 'Mercy Friends')</title>
         <meta name="description" content="@yield('meta_description', 'Mercy Friends est une association humanitaire à but non lucratif engagée contre la faim, la précarité et l\'exclusion dans 24 pays.')">
 
         <!-- Google Fonts: Inter -->

@@ -20,7 +20,7 @@
 
         <!-- Pied de la modale -->
         <div id="modal-footer" class="px-6 py-4 bg-mercy-surface border-t border-gray-200 flex flex-wrap items-center justify-between gap-3 shrink-0">
-            <span class="text-xs text-gray-500">Mercy Friends — Association à but non lucratif</span>
+            <span class="text-xs text-gray-500">Mercy Friends : Association à but non lucratif</span>
             <button type="button" onclick="closeUniversalModal()" class="px-5 py-2.5 rounded-xl bg-mercy-black hover:bg-mercy-green text-white text-xs font-extrabold transition">
                 Fermer
             </button>

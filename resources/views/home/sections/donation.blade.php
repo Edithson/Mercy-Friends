@@ -160,7 +160,7 @@
                         <p class="text-gray-400 text-xs">Titulaire du compte :</p>
                         <p class="font-bold text-white">Association Mercy Friends</p>
                         <p class="text-gray-400 text-xs pt-1">Établissement bancaire :</p>
-                        <p class="font-semibold text-gray-200">Crédit Coopératif — Agence Solidaire</p>
+                        <p class="font-semibold text-gray-200">Crédit Coopératif</p>
                         <p class="text-gray-400 text-xs pt-1">IBAN :</p>
                         <p id="iban-text" class="font-mono text-xs sm:text-sm font-bold text-mercy-accent break-all">FR76 4255 9100 0008 0149 2731 548</p>
                         <p class="text-gray-400 text-xs pt-1">BIC / SWIFT :</p>

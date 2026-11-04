@@ -60,7 +60,7 @@
                     </div>
                     <div class="p-5 flex-1 flex flex-col justify-between">
                         <div>
-                            <p class="text-xs text-gray-400 font-medium mb-1">Sauver des vies menacées — Agir avec Mercy Friends</p>
+                            <p class="text-xs text-gray-400 font-medium mb-1">Sauver des vies menacées, Agir avec Mercy Friends</p>
                             <h2 class="text-lg font-bold text-white group-hover:text-mercy-accent transition-colors">
                                 Urgence Eau & Sécheresse au Sahel
                             </h2>

@@ -77,3 +77,67 @@ test('home page has streamlined navigation bar and mobile menu structure', funct
     $response->assertSee('id="mobile-menu-btn"', false);
     $response->assertSee('id="mobile-menu"', false);
 });
+
+test('home page defaults to English with full internationalization', function () {
+    $response = $this->get('/');
+
+    $response->assertStatus(200);
+    $response->assertSee('lang="en"', false);
+    $response->assertSee('window.APP_LOCALE = "en"', false);
+    $response->assertSee('Humanitarian Action : Zero Hunger');
+    $response->assertSee('Donate Now');
+});
+
+test('home page supports French at /fr and German at /de', function () {
+    $responseFr = $this->get('/fr');
+    $responseFr->assertStatus(200);
+    $responseFr->assertSee('lang="fr"', false);
+    $responseFr->assertSee('window.APP_LOCALE = "fr"', false);
+    $responseFr->assertSee('ONG Humanitaire : Zéro Faim');
+    $responseFr->assertSee('Faire un don');
+
+    $responseDe = $this->get('/de');
+    $responseDe->assertStatus(200);
+    $responseDe->assertSee('lang="de"', false);
+    $responseDe->assertSee('window.APP_LOCALE = "de"', false);
+    $responseDe->assertSee('Humanitäre Hilfe : Zero Hunger');
+    $responseDe->assertSee('Jetzt spenden');
+});
+
+test('locale switch endpoint updates session and redirects correctly', function () {
+    $responseDe = $this->get('/locale/de');
+    $responseDe->assertRedirect('/de');
+    $this->assertEquals('de', session('locale'));
+
+    $responseFr = $this->get('/locale/fr');
+    $responseFr->assertRedirect('/fr');
+    $this->assertEquals('fr', session('locale'));
+
+    $responseEn = $this->get('/locale/en');
+    $responseEn->assertRedirect('/');
+    $this->assertEquals('en', session('locale'));
+
+    // Unsupported locale should return 404
+    $this->get('/locale/es')->assertStatus(404);
+});
+
+test('rendered HTML does not contain em dashes or en dashes across all languages', function () {
+    $locales = ['/', '/en', '/fr', '/de'];
+
+    foreach ($locales as $uri) {
+        $html = $this->get($uri)->getContent();
+        expect(str_contains($html, '—'))->toBeFalse("Locale {$uri} contains an em dash (—)")
+            ->and(str_contains($html, '–'))->toBeFalse("Locale {$uri} contains an en dash (–)");
+    }
+});
+
+test('desktop language dropdowns are present and contain stable interactive controls', function () {
+    $response = $this->get('/');
+
+    $response->assertSee('id="topbar-lang-btn"', false);
+    $response->assertSee('id="topbar-lang-dropdown"', false);
+    $response->assertSee('id="header-lang-btn"', false);
+    $response->assertSee('id="header-lang-dropdown"', false);
+    $response->assertSee('onclick="toggleLanguageDropdown(event, \'topbar-lang-dropdown\')"', false);
+    $response->assertSee('onclick="toggleLanguageDropdown(event, \'header-lang-dropdown\')"', false);
+});

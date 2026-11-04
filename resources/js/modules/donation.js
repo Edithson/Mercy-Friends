@@ -1,5 +1,6 @@
 import { openUniversalModal } from './modals.js';
 import { showToast } from './toast.js';
+import { t, getLocale } from '../data/i18n.js';
 
 export const donationState = {
     frequency: 'once',
@@ -69,29 +70,44 @@ export function updateDonationImpactUI() {
     const taxText = document.getElementById('tax-deduction-text');
     const iconEl = document.getElementById('impact-icon');
     const submitLabel = document.getElementById('donate-submit-label');
+    const loc = getLocale();
 
-    const netCost = (amt * 0.34).toFixed(2).replace('.', ',');
+    const rawNet = (amt * 0.34).toFixed(2);
+    const netCost = loc === 'en' ? rawNet : rawNet.replace('.', ',');
 
     if (taxText) {
-        taxText.innerHTML = `Après réduction fiscale de 66 %, ce don ${isMonthly ? 'mensuel ' : ''}ne vous revient réellement qu'à <strong>${netCost} €</strong>${isMonthly ? ' / mois' : ''}.`;
+        const freqWord = isMonthly
+            ? (loc === 'de' ? 'monatliche ' : (loc === 'fr' ? 'mensuel ' : 'monthly '))
+            : '';
+        const suffixWord = isMonthly
+            ? (loc === 'en' ? ' / month' : (loc === 'de' ? ' / Monat' : ' / mois'))
+            : '';
+        taxText.innerHTML = t('donation_tax_hint', { freq: freqWord, net: `<strong>${netCost}</strong>`, suffix: suffixWord });
     }
+
     if (submitLabel) {
-        submitLabel.textContent = `Valider mon don ${isMonthly ? 'mensuel ' : ''}de ${amt} €`;
+        submitLabel.textContent = isMonthly
+            ? t('donation_monthly_btn', { amt })
+            : t('donation_once_btn', { amt });
     }
+
+    const monthSuffix = isMonthly
+        ? (loc === 'en' ? '/month' : (loc === 'de' ? '/Monat' : '/mois'))
+        : '';
 
     if (iconEl && impactText) {
         if (amt < 35) {
             iconEl.className = 'fa-solid fa-droplet';
-            impactText.textContent = `Avec ${amt} €${isMonthly ? '/mois' : ''}, vous assurez l'approvisionnement en eau potable et kits d'hygiène pour une famille vulnérable.`;
+            impactText.textContent = t('impact_water', { amt, suffix: monthSuffix });
         } else if (amt < 85) {
             iconEl.className = 'fa-solid fa-wheat-awn';
-            impactText.textContent = `Avec ${amt} €${isMonthly ? '/mois' : ''}, vous financez un kit agricole et nutritionnel complet pour une famille pendant 3 mois.`;
+            impactText.textContent = t('impact_farming', { amt, suffix: monthSuffix });
         } else if (amt < 180) {
             iconEl.className = 'fa-solid fa-kit-medical';
-            impactText.textContent = `Avec ${amt} €${isMonthly ? '/mois' : ''}, vous prenez en charge le traitement nutritionnel vital de deux enfants malnutris et des semences maraîchères.`;
+            impactText.textContent = t('impact_medical', { amt, suffix: monthSuffix });
         } else {
             iconEl.className = 'fa-solid fa-solar-panel';
-            impactText.textContent = `Avec ${amt} €${isMonthly ? '/mois' : ''}, vous contribuez directement à l'équipement d'un forage villageois solaire ou d'une coopérative agricole.`;
+            impactText.textContent = t('impact_solar', { amt, suffix: monthSuffix });
         }
     }
 }
@@ -133,21 +149,25 @@ export function handleDonationSubmit(event) {
     if (isNaN(amt) || amt < 5) {
         const err = document.getElementById('donation-amount-error');
         if (err) err.classList.remove('hidden');
-        showToast('Veuillez indiquer un montant minimum de 5 €.', 'error');
+        showToast(t('donation_min_err'), 'error');
         return;
     }
     if (!name || !email || !email.includes('@')) {
-        showToast('Veuillez renseigner votre nom complet et une adresse e-mail valide pour votre reçu fiscal.', 'error');
+        showToast(t('donation_fields_err'), 'error');
         return;
     }
 
     const refNumber = 'MF-2026-' + Math.floor(100000 + Math.random() * 900000);
-    const netCost = (amt * 0.34).toFixed(2).replace('.', ',');
-    const freqLabel = donationState.frequency === 'monthly' ? 'Mensuel (Don régulier)' : 'Ponctuel (Une seule fois)';
+    const loc = getLocale();
+    const rawNet = (amt * 0.34).toFixed(2);
+    const netCost = loc === 'en' ? rawNet : rawNet.replace('.', ',');
+    const freqLabel = donationState.frequency === 'monthly'
+        ? t('donation_monthly_label')
+        : t('donation_once_label');
 
     openUniversalModal(
-        'Confirmation & Reçu Fiscal',
-        `Merci infiniment pour votre solidarité, ${name} !`,
+        t('donation_receipt_badge'),
+        t('donation_thank_you', { name }),
         `
             <div class="p-5 rounded-2xl bg-mercy-soft border border-mercy-green/40 text-mercy-darkGreen mb-4">
                 <div class="flex items-center gap-3">
@@ -155,37 +175,37 @@ export function handleDonationSubmit(event) {
                         <i class="fa-solid fa-check"></i>
                     </div>
                     <div>
-                        <h4 class="font-black text-base text-mercy-black">Don enregistré avec succès</h4>
-                        <p class="text-xs">Un récapitulatif et votre reçu fiscal officiel ont été générés pour <strong>${email}</strong>.</p>
+                        <h4 class="font-black text-base text-mercy-black">${t('donation_recorded')}</h4>
+                        <p class="text-xs">${t('donation_summary_sent', { email: `<strong>${email}</strong>` })}</p>
                     </div>
                 </div>
             </div>
 
             <div class="bg-mercy-surface border border-gray-200 rounded-2xl p-5 space-y-2.5 text-xs sm:text-sm">
                 <div class="flex justify-between border-b border-gray-200 pb-2">
-                    <span class="text-gray-500">Référence du reçu indicatif :</span>
+                    <span class="text-gray-500">${t('donation_receipt_ref')}</span>
                     <strong class="font-mono text-mercy-black">${refNumber}</strong>
                 </div>
                 <div class="flex justify-between border-b border-gray-200 pb-2">
-                    <span class="text-gray-500">Montant & Fréquence :</span>
-                    <strong class="text-mercy-green">${amt},00 € — ${freqLabel}</strong>
+                    <span class="text-gray-500">${t('donation_amount_freq')}</span>
+                    <strong class="text-mercy-green">${amt},00 € (${freqLabel})</strong>
                 </div>
                 <div class="flex justify-between border-b border-gray-200 pb-2">
-                    <span class="text-gray-500">Coût réel après déduction fiscale (66 %) :</span>
+                    <span class="text-gray-500">${t('donation_net_cost_label')}</span>
                     <strong class="text-mercy-black">${netCost} €</strong>
                 </div>
                 <div class="flex justify-between border-b border-gray-200 pb-2">
-                    <span class="text-gray-500">Affectation choisie :</span>
+                    <span class="text-gray-500">${t('donation_allocated_to')}</span>
                     <strong class="text-mercy-black text-right">${cause}</strong>
                 </div>
                 <div class="flex justify-between">
-                    <span class="text-gray-500">Mode de règlement :</span>
+                    <span class="text-gray-500">${t('donation_method')}</span>
                     <strong class="text-mercy-black">${paymentMethod}</strong>
                 </div>
             </div>
 
             <p class="text-xs text-gray-500 mt-4">
-                90 % de votre contribution est immédiatement orientée vers nos missions sur le terrain. Toute l'équipe de Mercy Friends et nos partenaires locaux vous remercient chaleureusement.
+                ${t('donation_efficiency_note')}
             </p>
         `
     );
@@ -199,7 +219,7 @@ export function copyIBAN() {
     const iban = 'FR76 4255 9100 0008 0149 2731 548';
     if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(iban).then(() => {
-            showToast('IBAN copié dans le presse-papiers : ' + iban, 'success');
+            showToast(t('iban_copied'), 'success');
         }).catch(() => {
             fallbackCopy(iban);
         });
@@ -218,7 +238,7 @@ function fallbackCopy(text) {
     tempInput.select();
     try {
         document.execCommand('copy');
-        showToast('IBAN copié dans le presse-papiers : ' + text, 'success');
+        showToast(t('iban_copied'), 'success');
     } catch (err) {
         showToast('IBAN : ' + text, 'info');
     }

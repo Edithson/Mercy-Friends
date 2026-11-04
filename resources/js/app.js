@@ -9,7 +9,14 @@ import { PUBLICATIONS_DATA } from './data/publications.js';
 
 // Modules
 import { showToast } from './modules/toast.js';
-import { toggleMobileMenu, toggleSearchBar, handleGlobalSearch } from './modules/navigation.js';
+import {
+    toggleMobileMenu,
+    toggleSearchBar,
+    handleGlobalSearch,
+    toggleLanguageDropdown,
+    closeAllLanguageDropdowns,
+    initLanguageDropdownListeners
+} from './modules/navigation.js';
 import { switchAboutTab } from './modules/about.js';
 import { renderThemes, openThemeModal } from './modules/themes.js';
 import {
@@ -68,10 +75,12 @@ Object.assign(window, {
     // Toast
     showToast,
 
-    // Navigation & Recherche
+    // Navigation, Recherche & Sélecteur de langue
     toggleMobileMenu,
     toggleSearchBar,
     handleGlobalSearch,
+    toggleLanguageDropdown,
+    closeAllLanguageDropdowns,
 
     // À propos
     switchAboutTab,
@@ -138,4 +147,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initCookieBanner();
     initCountersAndScrollSpy();
     initModalListeners();
+    initLanguageDropdownListeners();
 });

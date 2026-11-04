@@ -1,5 +1,6 @@
 import { closeUniversalModal } from './modals.js';
 import { showToast } from './toast.js';
+import { t } from '../data/i18n.js';
 
 export let cookiePreferences = {
     essential: true,
@@ -38,7 +39,7 @@ export function saveCookieChoice(mode) {
     const banner = document.getElementById('cookie-banner');
     if (banner) banner.classList.add('hidden');
 
-    showToast(mode === 'all' ? 'Préférences enregistrées : tous les cookies ont été acceptés.' : 'Seuls les cookies strictement essentiels sont activés.', 'info');
+    showToast(mode === 'all' ? t('cookies_all_toast') : t('cookies_essential_toast'), 'info');
 }
 
 export function saveModalCookieSettings(acceptAll) {
@@ -63,5 +64,5 @@ export function saveModalCookieSettings(acceptAll) {
     if (banner) banner.classList.add('hidden');
 
     closeUniversalModal();
-    showToast('Vos paramètres de cookies ont bien été mis à jour.', 'success');
+    showToast(t('cookies_updated_toast'), 'success');
 }

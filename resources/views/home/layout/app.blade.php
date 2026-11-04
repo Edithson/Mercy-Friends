@@ -18,16 +18,20 @@
         <!-- Tailwind CSS & JS via Vite (Local, sans CDN) -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+        <script>
+            window.APP_LOCALE = "{{ app()->getLocale() }}";
+        </script>
+
         @stack('styles')
     </head>
 
     <body class="font-sans antialiased selection:bg-mercy-green selection:text-white bg-[#F8FAF9] text-[#0B0F0C] overflow-x-hidden">
         <!-- Liens d'accessibilité rapide (Skip Links) -->
         <div class="sr-only focus-within:not-sr-only focus-within:fixed focus-within:top-2 focus-within:left-2 focus-within:z-[100] bg-mercy-black text-white p-3 rounded-xl shadow-lg flex gap-3">
-            <a href="#main-nav" class="px-3 py-1 bg-mercy-green rounded-lg text-sm font-semibold">Aller au menu</a>
-            <a href="#main-content" class="px-3 py-1 bg-mercy-green rounded-lg text-sm font-semibold">Aller au contenu</a>
-            <a href="#faire-un-don" class="px-3 py-1 bg-mercy-green rounded-lg text-sm font-semibold">Faire un don</a>
-            <a href="#main-footer" class="px-3 py-1 bg-mercy-green rounded-lg text-sm font-semibold">Aller au pied de page</a>
+            <a href="#main-nav" class="px-3 py-1 bg-mercy-green rounded-lg text-sm font-semibold">{{ __('site.nav.home') }}</a>
+            <a href="#main-content" class="px-3 py-1 bg-mercy-green rounded-lg text-sm font-semibold">{{ __('site.meta.skip') }}</a>
+            <a href="#faire-un-don" class="px-3 py-1 bg-mercy-green rounded-lg text-sm font-semibold">{{ __('site.nav.donate_btn') }}</a>
+            <a href="#main-footer" class="px-3 py-1 bg-mercy-green rounded-lg text-sm font-semibold">{{ __('site.footer.col_org') }}</a>
         </div>
 
         <!-- Notification Toast Globale -->

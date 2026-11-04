@@ -1,3 +1,5 @@
+import { getLocale } from '../data/i18n.js';
+
 export function initCountersAndScrollSpy() {
     const counters = document.querySelectorAll('.stat-counter');
     let animated = false;
@@ -12,12 +14,15 @@ export function initCountersAndScrollSpy() {
                         const decimals = parseInt(counter.dataset.decimals || '0', 10);
                         const duration = 1300;
                         const startTime = performance.now();
+                        const loc = getLocale();
 
                         function step(now) {
                             const progress = Math.min((now - startTime) / duration, 1);
                             const eased = 1 - Math.pow(1 - progress, 3);
                             const current = (target * eased).toFixed(decimals);
-                            counter.textContent = decimals > 0 ? current.replace('.', ',') : current;
+                            counter.textContent = decimals > 0
+                                ? (loc === 'en' ? current : current.replace('.', ','))
+                                : current;
                             if (progress < 1) requestAnimationFrame(step);
                         }
                         requestAnimationFrame(step);

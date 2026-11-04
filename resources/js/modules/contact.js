@@ -1,4 +1,5 @@
 import { showToast } from './toast.js';
+import { t } from '../data/i18n.js';
 
 export function prefillContact(subjectValue) {
     const select = document.getElementById('contact-subject');
@@ -37,7 +38,7 @@ export function handleContactSubmit(event) {
 
     if (!name || !email || !email.includes('@') || message.length < 10 || !consent) {
         if (errorEl) {
-            errorEl.textContent = 'Veuillez remplir tous les champs obligatoires (message d\'au moins 10 caractères) et accepter la politique de confidentialité.';
+            errorEl.textContent = t('contact_err');
             errorEl.classList.remove('hidden');
         }
         return;
@@ -48,23 +49,23 @@ export function handleContactSubmit(event) {
     const successBox = document.getElementById('contact-success-box');
     const successDetail = document.getElementById('contact-success-detail');
     if (successDetail) {
-        successDetail.textContent = `Merci ${name}. Votre demande concernant « ${subject} » a bien été enregistrée. Notre équipe vous répondra sous 24 à 48h ouvrées à l'adresse ${email}.`;
+        successDetail.textContent = t('contact_success_detail', { name, subject, email });
     }
     if (successBox) successBox.classList.remove('hidden');
 
     const form = document.getElementById('contact-form');
     if (form) form.reset();
 
-    showToast('Votre message a bien été envoyé à Mercy Friends.', 'success');
+    showToast(t('contact_toast_sent'), 'success');
 }
 
 export function handleNewsletterSubmit(event) {
     event.preventDefault();
     const input = document.getElementById('newsletter-email');
     if (!input || !input.value || !input.value.includes('@')) {
-        showToast('Veuillez saisir une adresse e-mail valide.', 'error');
+        showToast(t('newsletter_invalid_err'), 'error');
         return;
     }
-    showToast(`Inscription confirmée pour ${input.value}. Bienvenue dans la communauté Mercy Friends !`, 'success');
+    showToast(t('newsletter_success_msg', { email: input.value }), 'success');
     input.value = '';
 }

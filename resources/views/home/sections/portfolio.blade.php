@@ -10,30 +10,30 @@
         <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 sm:gap-6 mb-6 sm:mb-10">
             <div class="max-w-2xl">
                 <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-mercy-green/20 border border-mercy-accent/30 text-mercy-accent text-[11px] sm:text-xs font-extrabold uppercase tracking-wider mb-2 sm:mb-3">
-                    <i class="fa-solid fa-earth-americas"></i> Présence Terrain Internationale
+                    <i class="fa-solid fa-earth-americas"></i> {{ __('site.portfolio.tag') }}
                 </div>
                 <h2 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white">
-                    Portefeuille Mondial : <span class="text-mercy-accent">24 Pays</span>
+                    {{ __('site.portfolio.title') }}
                 </h2>
                 <p class="text-gray-300 mt-2 text-xs sm:text-sm lg:text-base leading-relaxed">
-                    Explorez la véritable carte vectorielle de nos interventions. Cliquez directement sur un pays coloré ou utilisez les filtres pour consulter les indicateurs terrain et budgets engagés.
+                    {{ __('site.portfolio.subtitle') }}
                 </p>
             </div>
 
             <!-- Onglets de filtre régional avec défilement fluide sur mobile -->
-            <div class="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar pb-1 shrink-0" role="tablist" aria-label="Filtrer par région">
+            <div class="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar pb-1 shrink-0" role="tablist" aria-label="Regions">
                 <button type="button" onclick="filterCountries('all')" data-region="all" class="region-tab-btn px-3 py-1.5 sm:px-4 sm:py-2.5 rounded-lg sm:rounded-xl text-xs font-bold bg-mercy-green text-white transition flex items-center gap-1.5 shadow-glow whitespace-nowrap">
                     <i class="fa-solid fa-globe text-[11px]"></i>
-                    <span>Tous (24)</span>
+                    <span>{{ __('site.portfolio.filter_all') }}</span>
                 </button>
                 <button type="button" onclick="filterCountries('afrique')" data-region="afrique" class="region-tab-btn px-3 py-1.5 sm:px-4 sm:py-2.5 rounded-lg sm:rounded-xl text-xs font-bold bg-white/10 text-gray-300 hover:bg-white/20 transition flex items-center gap-1.5 whitespace-nowrap">
-                    <span>Afrique (14)</span>
+                    <span>{{ __('site.portfolio.filter_africa') }}</span>
                 </button>
                 <button type="button" onclick="filterCountries('asie')" data-region="asie" class="region-tab-btn px-3 py-1.5 sm:px-4 sm:py-2.5 rounded-lg sm:rounded-xl text-xs font-bold bg-white/10 text-gray-300 hover:bg-white/20 transition flex items-center gap-1.5 whitespace-nowrap">
-                    <span>Moyen-Orient &amp; Asie (6)</span>
+                    <span>{{ __('site.portfolio.filter_asia_mideast') }}</span>
                 </button>
                 <button type="button" onclick="filterCountries('amerique')" data-region="amerique" class="region-tab-btn px-3 py-1.5 sm:px-4 sm:py-2.5 rounded-lg sm:rounded-xl text-xs font-bold bg-white/10 text-gray-300 hover:bg-white/20 transition flex items-center gap-1.5 whitespace-nowrap">
-                    <span>Amériques (4)</span>
+                    <span>{{ __('site.portfolio.filter_americas') }}</span>
                 </button>
             </div>
         </div>
@@ -51,11 +51,11 @@
                     <div class="flex items-center justify-between gap-2 mb-3 flex-wrap">
                         <div class="flex items-center gap-1.5 text-[11px] sm:text-xs text-gray-300 font-medium">
                             <span class="inline-block w-2 h-2 rounded-full bg-mercy-green animate-pulse"></span>
-                            <span>Touchez un pays ou une balise</span>
+                            <span>{{ __('site.portfolio.dossier_select_hint') }}</span>
                         </div>
                         <div class="flex items-center gap-2">
                             <span id="country-count-badge" class="text-[10px] sm:text-xs font-black text-mercy-accent bg-mercy-green/20 px-2.5 py-0.5 rounded-full border border-mercy-accent/30">
-                                24 pays affichés
+                                24
                             </span>
                         </div>
                     </div>
@@ -68,13 +68,13 @@
 
                         <!-- Boutons flottants de zoom & recentrage (Compacts) -->
                         <div class="absolute bottom-2.5 right-2.5 sm:bottom-3.5 sm:right-3.5 z-20 flex flex-col gap-1 bg-mercy-black/85 backdrop-blur-md p-1 rounded-lg sm:rounded-xl border border-white/15 shadow-xl">
-                            <button type="button" onclick="zoomMapIn()" aria-label="Agrandir la carte" title="Zoom avant" class="w-7 h-7 sm:w-8 sm:h-8 rounded-md sm:rounded-lg bg-white/10 hover:bg-mercy-green text-white flex items-center justify-center text-xs sm:text-sm font-bold transition">
+                            <button type="button" onclick="zoomMapIn()" aria-label="{{ __('site.portfolio.zoom_in') }}" title="{{ __('site.portfolio.zoom_in') }}" class="w-7 h-7 sm:w-8 sm:h-8 rounded-md sm:rounded-lg bg-white/10 hover:bg-mercy-green text-white flex items-center justify-center text-xs sm:text-sm font-bold transition">
                                 <i class="fa-solid fa-plus"></i>
                             </button>
-                            <button type="button" onclick="zoomMapOut()" aria-label="Dézoomer la carte" title="Zoom arrière" class="w-7 h-7 sm:w-8 sm:h-8 rounded-md sm:rounded-lg bg-white/10 hover:bg-mercy-green text-white flex items-center justify-center text-xs sm:text-sm font-bold transition">
+                            <button type="button" onclick="zoomMapOut()" aria-label="{{ __('site.portfolio.zoom_out') }}" title="{{ __('site.portfolio.zoom_out') }}" class="w-7 h-7 sm:w-8 sm:h-8 rounded-md sm:rounded-lg bg-white/10 hover:bg-mercy-green text-white flex items-center justify-center text-xs sm:text-sm font-bold transition">
                                 <i class="fa-solid fa-minus"></i>
                             </button>
-                            <button type="button" onclick="resetMapZoom()" aria-label="Recentrer la carte" title="Vue globale" class="w-7 h-7 sm:w-8 sm:h-8 rounded-md sm:rounded-lg bg-white/10 hover:bg-mercy-green text-white flex items-center justify-center text-[10px] sm:text-xs font-bold transition">
+                            <button type="button" onclick="resetMapZoom()" aria-label="{{ __('site.portfolio.zoom_reset') }}" title="{{ __('site.portfolio.zoom_reset') }}" class="w-7 h-7 sm:w-8 sm:h-8 rounded-md sm:rounded-lg bg-white/10 hover:bg-mercy-green text-white flex items-center justify-center text-[10px] sm:text-xs font-bold transition">
                                 <i class="fa-solid fa-arrows-rotate"></i>
                             </button>
                         </div>
@@ -88,14 +88,13 @@
                             <p id="tooltip-region" class="text-[9px] text-gray-400 font-medium"></p>
                             <div class="mt-1 pt-1 border-t border-white/15 flex items-center justify-between gap-2 text-[10px]">
                                 <span id="tooltip-projects" class="font-bold text-mercy-accent"></span>
-                                <span class="text-gray-300">Inspecter →</span>
+                                <span class="text-gray-300">→</span>
                             </div>
                         </div>
 
                         <!-- Légende discrète sur la carte -->
                         <div class="absolute bottom-2.5 left-2.5 sm:bottom-3.5 sm:left-3.5 z-20 hidden sm:flex items-center gap-2.5 bg-mercy-black/80 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/10 text-[10px] text-gray-300">
-                            <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded bg-mercy-green inline-block border border-mercy-accent"></span> Mercy Friends (24)</span>
-                            <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded bg-[#16201A] inline-block border border-[#223328]"></span> Autres</span>
+                            <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded bg-mercy-green inline-block border border-mercy-accent"></span> {{ __('site.portfolio.legend_intervention') }} (24)</span>
                         </div>
                     </div>
 
@@ -103,9 +102,9 @@
                     <div class="mt-4 sm:mt-5">
                         <div class="flex items-center justify-between mb-2">
                             <span class="text-[10px] sm:text-xs font-extrabold uppercase tracking-wider text-gray-400">
-                                Pays de la zone
+                                {{ __('site.portfolio.pills_heading') }}
                             </span>
-                            <span class="text-[10px] sm:text-xs text-gray-500">Cliquer pour localiser</span>
+                            <span class="text-[10px] sm:text-xs text-gray-500">{{ __('site.portfolio.pills_hint') }}</span>
                         </div>
                         <div id="countries-pills-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-48 sm:max-h-60 overflow-y-auto custom-scroll pr-1"></div>
                     </div>

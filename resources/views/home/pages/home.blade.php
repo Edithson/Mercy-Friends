@@ -1,6 +1,7 @@
 @extends('home.layout.app')
 
-@section('title', 'Mercy Friends — Ensemble contre la faim et l\'exclusion')
+@section('title', __('site.meta.title'))
+@section('meta_description', __('site.meta.description'))
 
 @section('content')
     <!-- 3. Hero Section + 3 Cartes d'urgences -->

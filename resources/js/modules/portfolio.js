@@ -1,4 +1,5 @@
 import { COUNTRIES_DATA } from '../data/countries.js';
+import { t } from '../data/i18n.js';
 import { jumpToDonation } from './donation.js';
 import { showToast } from './toast.js';
 
@@ -143,11 +144,12 @@ function updateTooltip(e, countryId) {
     if (flagEl) flagEl.textContent = country.flag || '🌍';
     if (nameEl) nameEl.textContent = country.name;
     if (regionEl) regionEl.textContent = country.regionLabel;
-    if (projectsEl) projectsEl.textContent = `${country.projects} projets actifs`;
+    if (projectsEl) projectsEl.textContent = `${country.projects} ${t('active_projects_label').toLowerCase()}`;
 
     const rect = container.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
+
     const clampedX = Math.max(90, Math.min(x, rect.width - 90));
     const clampedY = Math.max(70, Math.min(y, rect.height - 20));
 
@@ -235,7 +237,7 @@ export function renderCountriesPortfolio() {
 
     const countBadge = document.getElementById('country-count-badge');
     if (countBadge) {
-        countBadge.textContent = `${filtered.length} pays d'intervention affichés`;
+        countBadge.textContent = t('showing_countries', { count: filtered.length });
     }
 
     const active = COUNTRIES_DATA.find(c => c.id === selectedCountryId) || filtered[0] || COUNTRIES_DATA[0];
@@ -272,7 +274,7 @@ export function renderCountriesPortfolio() {
                             <span class="text-xs sm:text-sm">${c.flag || '🌍'}</span>
                             <span class="text-xs font-bold truncate">${c.name}</span>
                         </div>
-                        <span class="block text-[10px] ${isSelected ? 'text-white/90' : 'text-gray-400'} mt-0.5">${c.projects} projets</span>
+                        <span class="block text-[10px] ${isSelected ? 'text-white/90' : 'text-gray-400'} mt-0.5">${c.projects} ${t('active_projects_label').toLowerCase()}</span>
                     </div>
                     <i class="fa-solid fa-chevron-right text-[10px] ${isSelected ? 'text-white' : 'text-mercy-accent'}"></i>
                 </button>
@@ -303,26 +305,26 @@ export function renderCountriesPortfolio() {
             <div class="grid grid-cols-3 gap-2 my-4">
                 <div class="p-2.5 rounded-xl bg-mercy-black border border-white/10 text-center">
                     <span class="block text-base sm:text-xl font-black text-mercy-accent">${active.projects}</span>
-                    <span class="block text-[10px] text-gray-400 font-medium mt-0.5">Projets</span>
+                    <span class="block text-[10px] text-gray-400 font-medium mt-0.5">${t('active_projects_label')}</span>
                 </div>
                 <div class="p-2.5 rounded-xl bg-mercy-black border border-white/10 text-center">
                     <span class="block text-xs sm:text-base font-black text-white">${active.budget}</span>
-                    <span class="block text-[10px] text-gray-400 font-medium mt-0.5">Budget</span>
+                    <span class="block text-[10px] text-gray-400 font-medium mt-0.5">${t('budget_label')}</span>
                 </div>
                 <div class="p-2.5 rounded-xl bg-mercy-black border border-white/10 text-center">
                     <span class="block text-xs sm:text-base font-black text-mercy-accent">${active.people}</span>
-                    <span class="block text-[10px] text-gray-400 font-medium mt-0.5">Aidés</span>
+                    <span class="block text-[10px] text-gray-400 font-medium mt-0.5">${t('assisted_label')}</span>
                 </div>
             </div>
 
             <div class="p-3 sm:p-3.5 rounded-xl bg-white/5 border border-white/10 text-[11px] sm:text-xs text-gray-200 mb-4">
-                <span class="font-bold text-mercy-accent uppercase block mb-1">Priorités terrain :</span>
+                <span class="font-bold text-mercy-accent uppercase block mb-1">${t('field_priorities')}</span>
                 ${active.focus}
             </div>
 
             <button type="button" onclick="supportCountry('${active.name}')" class="w-full py-2.5 sm:py-3 px-4 rounded-xl bg-mercy-green hover:bg-mercy-darkGreen text-white font-bold text-xs sm:text-sm transition flex items-center justify-center gap-2 shadow-glow group">
                 <i class="fa-solid fa-hand-holding-heart text-xs group-hover:scale-110 transition-transform"></i>
-                <span>Soutenir nos programmes — ${active.name}</span>
+                <span>${t('support_country_btn', { country: active.name })}</span>
             </button>
         `;
     }
@@ -330,5 +332,5 @@ export function renderCountriesPortfolio() {
 
 export function supportCountry(countryName) {
     jumpToDonation('once', 50);
-    showToast(`Votre don contribuera à nos programmes prioritaires (${countryName} & urgences terrain).`, 'info');
+    showToast(t('support_country_toast', { country: countryName }), 'info');
 }

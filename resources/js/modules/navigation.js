@@ -1,6 +1,7 @@
 import { COUNTRIES_DATA } from '../data/countries.js';
 import { PROJECTS_DATA } from '../data/projects.js';
 import { THEMES_DATA } from '../data/themes.js';
+import { t } from '../data/i18n.js';
 
 export function toggleMobileMenu(forceClose = false) {
     const menu = document.getElementById('mobile-menu');
@@ -42,11 +43,11 @@ export function handleGlobalSearch(query) {
     if (!q) {
         resultsBox.innerHTML = `
             <button type="button" onclick="selectCountry('cm'); toggleSearchBar(); toggleMobileMenu(true); document.getElementById('pays').scrollIntoView({behavior:'smooth'});" class="p-2.5 sm:p-3 rounded-xl bg-white/5 hover:bg-white/10 text-left text-xs flex items-center justify-between">
-                <span><strong class="text-mercy-accent">Pays :</strong> Cameroun (19 projets)</span>
+                <span><strong class="text-mercy-accent">${t('search_badge_country')} :</strong> ${t('search_default_country')}</span>
                 <i class="fa-solid fa-arrow-right text-gray-400 text-xs"></i>
             </button>
             <button type="button" onclick="openProjectModal(101); toggleSearchBar(); toggleMobileMenu(true);" class="p-2.5 sm:p-3 rounded-xl bg-white/5 hover:bg-white/10 text-left text-xs flex items-center justify-between">
-                <span><strong class="text-mercy-accent">Projet :</strong> 120 Forages Solaires &amp; Eau</span>
+                <span><strong class="text-mercy-accent">${t('search_badge_project')} :</strong> ${t('search_default_project')}</span>
                 <i class="fa-solid fa-arrow-right text-gray-400 text-xs"></i>
             </button>
         `;
@@ -57,8 +58,8 @@ export function handleGlobalSearch(query) {
     COUNTRIES_DATA.forEach(c => {
         if (c.name.toLowerCase().includes(q) || c.focus.toLowerCase().includes(q)) {
             matches.push({
-                badge: 'Pays',
-                label: `${c.name} — ${c.projects} projets`,
+                badge: t('search_badge_country'),
+                label: `${c.name} : ${c.projects} ${t('active_projects_label').toLowerCase()}`,
                 action: () => {
                     if (window.filterCountries) window.filterCountries('all');
                     if (window.selectCountry) window.selectCountry(c.id);
@@ -74,7 +75,7 @@ export function handleGlobalSearch(query) {
     PROJECTS_DATA.forEach(p => {
         if (p.title.toLowerCase().includes(q) || p.theme.toLowerCase().includes(q) || p.country.toLowerCase().includes(q)) {
             matches.push({
-                badge: 'Projet',
+                badge: t('search_badge_project'),
                 label: `${p.title} (${p.country})`,
                 action: () => {
                     toggleSearchBar();
@@ -85,11 +86,11 @@ export function handleGlobalSearch(query) {
         }
     });
 
-    THEMES_DATA.forEach((t, idx) => {
-        if (t.title.toLowerCase().includes(q) || t.shortDesc.toLowerCase().includes(q)) {
+    THEMES_DATA.forEach((themeItem, idx) => {
+        if (themeItem.title.toLowerCase().includes(q) || themeItem.shortDesc.toLowerCase().includes(q)) {
             matches.push({
-                badge: 'Thème',
-                label: t.title,
+                badge: t('search_badge_theme'),
+                label: themeItem.title,
                 action: () => {
                     toggleSearchBar();
                     toggleMobileMenu(true);
@@ -100,7 +101,7 @@ export function handleGlobalSearch(query) {
     });
 
     if (matches.length === 0) {
-        resultsBox.innerHTML = `<p class="text-xs text-gray-400 col-span-2 py-2">Aucun résultat trouvé pour « ${query} ». Essayez « Eau », « Cameroun », « Haïti ».</p>`;
+        resultsBox.innerHTML = `<p class="text-xs text-gray-400 col-span-2 py-2">${t('search_no_results', { q: query })}</p>`;
         return;
     }
 
@@ -115,5 +116,60 @@ export function handleGlobalSearch(query) {
         `;
         btn.onclick = item.action;
         resultsBox.appendChild(btn);
+    });
+}
+
+/**
+ * Gestion robuste et stable des listes déroulantes de langue (Click & Hover)
+ */
+export function toggleLanguageDropdown(event, dropdownId = 'topbar-lang-dropdown') {
+    if (event) {
+        event.stopPropagation();
+    }
+    const dropdown = document.getElementById(dropdownId);
+    if (!dropdown) return;
+
+    const isPinnedOpen = dropdown.classList.contains('is-pinned');
+
+    // Fermer les autres menus avant d'ouvrir
+    closeAllLanguageDropdowns();
+
+    if (!isPinnedOpen) {
+        dropdown.classList.remove('hidden');
+        dropdown.classList.add('is-pinned', '!block');
+        const trigger = dropdown.parentElement?.querySelector('button');
+        if (trigger) {
+            trigger.setAttribute('aria-expanded', 'true');
+            const chevron = trigger.querySelector('.fa-chevron-down');
+            if (chevron) chevron.classList.add('rotate-180');
+        }
+    }
+}
+
+export function closeAllLanguageDropdowns() {
+    document.querySelectorAll('.lang-dropdown-menu').forEach(menu => {
+        menu.classList.remove('is-pinned', '!block');
+        const trigger = menu.parentElement?.querySelector('button');
+        if (trigger) {
+            trigger.setAttribute('aria-expanded', 'false');
+            const chevron = trigger.querySelector('.fa-chevron-down');
+            if (chevron) chevron.classList.remove('rotate-180');
+        }
+    });
+}
+
+export function initLanguageDropdownListeners() {
+    // Fermer au clic extérieur
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.group\\/lang') && !e.target.closest('.lang-dropdown-menu')) {
+            closeAllLanguageDropdowns();
+        }
+    });
+
+    // Fermer avec la touche Échap
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeAllLanguageDropdowns();
+        }
     });
 }

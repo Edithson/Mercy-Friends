@@ -5,21 +5,21 @@
             <i class="fa-solid fa-cookie-bite"></i>
         </div>
         <div class="text-[11px] sm:text-xs leading-relaxed text-gray-300">
-            <h3 class="text-xs sm:text-sm font-bold text-white mb-0.5">Confidentialité &amp; Cookies</h3>
+            <h3 class="text-xs sm:text-sm font-bold text-white mb-0.5">{{ __('site.cookie.title') }}</h3>
             <p>
-                Nous utilisons des cookies essentiels et des mesures anonymes pour évaluer nos campagnes. Sans traçage publicitaire intrusif.
+                {{ __('site.cookie.desc') }}
             </p>
         </div>
     </div>
     <div class="mt-3 pt-2.5 border-t border-white/10 flex items-center justify-end gap-2">
         <button type="button" onclick="openLegalModal('cookies')" class="px-2.5 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-[11px] font-semibold text-gray-300 transition">
-            Paramètres
+            {{ __('site.cookie.btn_settings') }}
         </button>
         <button type="button" onclick="saveCookieChoice('essential')" class="px-2.5 py-1.5 rounded-lg border border-white/20 hover:bg-white/10 text-[11px] font-semibold text-white transition">
-            Refuser
+            {{ __('site.cookie.btn_decline') }}
         </button>
         <button type="button" onclick="saveCookieChoice('all')" class="px-3 py-1.5 rounded-lg bg-mercy-green hover:bg-mercy-darkGreen text-[11px] font-bold text-white transition shadow-sm">
-            Accepter
+            {{ __('site.cookie.btn_accept') }}
         </button>
     </div>
 </div>

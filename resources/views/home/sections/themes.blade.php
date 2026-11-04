@@ -3,13 +3,13 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-14">
             <span class="inline-block px-3 py-1 rounded-full bg-mercy-black text-mercy-accent text-[11px] sm:text-xs font-bold uppercase tracking-wider mb-2.5">
-                Notre Objectif : Zéro Faim &amp; Autonomie
+                {{ __('site.themes.tag') }}
             </span>
             <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-mercy-black">
-                Nos 6 Thèmes d'Intervention
+                {{ __('site.themes.title') }}
             </h2>
             <p class="text-gray-600 mt-2 sm:mt-3 text-xs sm:text-sm lg:text-base">
-                Face à la faim, nous déployons des approches intégrées mêlant secours d'urgence et autonomie durable. Cliquez sur un domaine pour découvrir notre méthode.
+                {{ __('site.themes.subtitle') }}
             </p>
         </div>
 

@@ -1,6 +1,7 @@
 import { THEMES_DATA } from '../data/themes.js';
 import { openUniversalModal, closeUniversalModal } from './modals.js';
 import { jumpToDonation } from './donation.js';
+import { t } from '../data/i18n.js';
 
 export function renderThemes() {
     const grid = document.getElementById('themes-grid');
@@ -25,7 +26,7 @@ export function renderThemes() {
                 </p>
             </div>
             <div class="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-mercy-black group-hover:text-mercy-green">
-                <span>Explorer notre approche</span>
+                <span>${t('explore_approach')}</span>
                 <i class="fa-solid fa-plus-circle text-sm sm:text-base text-mercy-green group-hover:rotate-90 transition-transform"></i>
             </div>
         </article>
@@ -33,29 +34,29 @@ export function renderThemes() {
 }
 
 export function openThemeModal(index) {
-    const t = THEMES_DATA[index];
-    if (!t) return;
+    const theme = THEMES_DATA[index];
+    if (!theme) return;
 
     openUniversalModal(
-        'Thème d\'intervention',
-        t.title,
+        t('theme_badge'),
+        theme.title,
         `
             <div class="p-4 rounded-2xl bg-mercy-soft border border-mercy-green/30 flex items-center gap-3 mb-4">
                 <div class="w-10 h-10 rounded-xl bg-mercy-green text-white flex items-center justify-center text-lg shrink-0">
-                    <i class="fa-solid ${t.icon}"></i>
+                    <i class="fa-solid ${theme.icon}"></i>
                 </div>
                 <div>
-                    <span class="text-xs uppercase font-extrabold text-mercy-darkGreen">Indicateur clé 2026</span>
-                    <p class="font-black text-mercy-black text-sm">${t.metric}</p>
+                    <span class="text-xs uppercase font-extrabold text-mercy-darkGreen">${t('key_metric_2026')}</span>
+                    <p class="font-black text-mercy-black text-sm">${theme.metric}</p>
                 </div>
             </div>
-            ${t.details}
+            ${theme.details}
             <div class="mt-6 pt-4 border-t border-gray-200 flex flex-wrap gap-3">
                 <button type="button" onclick="closeUniversalModal(); jumpToDonation('once', 50);" class="px-5 py-2.5 rounded-xl bg-mercy-green hover:bg-mercy-darkGreen text-white font-bold text-xs transition">
-                    Soutenir ce domaine d'action
+                    ${t('support_theme_btn')}
                 </button>
                 <button type="button" onclick="closeUniversalModal(); document.getElementById('projets').scrollIntoView({behavior:'smooth'});" class="px-5 py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-mercy-black font-bold text-xs transition">
-                    Voir les projets sur le terrain
+                    ${t('view_projects_field')}
                 </button>
             </div>
         `

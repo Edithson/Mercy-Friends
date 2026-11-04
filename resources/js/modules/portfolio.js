@@ -262,19 +262,19 @@ export function renderCountriesPortfolio() {
                 <button type="button"
                         id="pill-${c.id}"
                         onclick="selectCountry('${c.id}')"
-                        class="p-3 rounded-2xl border text-left transition-all flex items-center justify-between ${
+                        class="p-2 sm:p-2.5 rounded-xl border text-left transition-all flex items-center justify-between ${
                             isSelected
                                 ? 'bg-mercy-green border-mercy-accent text-white shadow-glow ring-2 ring-mercy-accent/40'
                                 : 'bg-mercy-black/70 border-white/10 text-gray-200 hover:border-mercy-accent/50 hover:bg-white/5'
                         }">
-                    <div class="truncate pr-2">
+                    <div class="truncate pr-1.5">
                         <div class="flex items-center gap-1.5">
-                            <span class="text-sm">${c.flag || '🌍'}</span>
-                            <span class="text-xs sm:text-sm font-extrabold truncate">${c.name}</span>
+                            <span class="text-xs sm:text-sm">${c.flag || '🌍'}</span>
+                            <span class="text-xs font-bold truncate">${c.name}</span>
                         </div>
-                        <span class="block text-[11px] ${isSelected ? 'text-white/90' : 'text-gray-400'} mt-0.5">${c.projects} projets actifs</span>
+                        <span class="block text-[10px] ${isSelected ? 'text-white/90' : 'text-gray-400'} mt-0.5">${c.projects} projets</span>
                     </div>
-                    <i class="fa-solid fa-chevron-right text-xs ${isSelected ? 'text-white' : 'text-mercy-accent'}"></i>
+                    <i class="fa-solid fa-chevron-right text-[10px] ${isSelected ? 'text-white' : 'text-mercy-accent'}"></i>
                 </button>
             `;
         }).join('');
@@ -283,45 +283,45 @@ export function renderCountriesPortfolio() {
     const detailCard = document.getElementById('country-detail-card');
     if (detailCard && active) {
         detailCard.innerHTML = `
-            <div class="flex items-center justify-between gap-2 pb-4 border-b border-white/10">
-                <div class="flex items-center gap-3">
-                    <span class="text-3xl sm:text-4xl shadow-sm">${active.flag || '🌍'}</span>
+            <div class="flex items-center justify-between gap-2 pb-3 border-b border-white/10">
+                <div class="flex items-center gap-2.5">
+                    <span class="text-2xl sm:text-3xl">${active.flag || '🌍'}</span>
                     <div>
-                        <span class="text-xs font-extrabold uppercase tracking-wider text-mercy-accent">${active.regionLabel}</span>
-                        <h3 class="text-2xl sm:text-3xl font-black text-white mt-0.5 leading-tight">${active.name}</h3>
+                        <span class="text-[10px] sm:text-xs font-extrabold uppercase tracking-wider text-mercy-accent">${active.regionLabel}</span>
+                        <h3 class="text-lg sm:text-2xl font-black text-white mt-0.5 leading-snug">${active.name}</h3>
                     </div>
                 </div>
-                <span class="w-12 h-12 rounded-2xl bg-mercy-green/20 border border-mercy-accent/40 text-mercy-accent flex items-center justify-center font-black text-sm uppercase">
+                <span class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-mercy-green/20 border border-mercy-accent/40 text-mercy-accent flex items-center justify-center font-black text-xs uppercase">
                     ${active.id}
                 </span>
             </div>
 
-            <p class="text-sm text-gray-300 leading-relaxed mt-5">
+            <p class="text-xs sm:text-sm text-gray-300 leading-relaxed mt-3 sm:mt-4">
                 ${active.context}
             </p>
 
-            <div class="grid grid-cols-3 gap-2.5 my-6">
-                <div class="p-3.5 rounded-2xl bg-mercy-black border border-white/10 text-center">
-                    <span class="block text-xl sm:text-2xl font-black text-mercy-accent">${active.projects}</span>
-                    <span class="block text-[11px] text-gray-400 font-semibold mt-0.5">Projets actifs</span>
+            <div class="grid grid-cols-3 gap-2 my-4">
+                <div class="p-2.5 rounded-xl bg-mercy-black border border-white/10 text-center">
+                    <span class="block text-base sm:text-xl font-black text-mercy-accent">${active.projects}</span>
+                    <span class="block text-[10px] text-gray-400 font-medium mt-0.5">Projets</span>
                 </div>
-                <div class="p-3.5 rounded-2xl bg-mercy-black border border-white/10 text-center">
-                    <span class="block text-base sm:text-lg font-black text-white">${active.budget}</span>
-                    <span class="block text-[11px] text-gray-400 font-semibold mt-0.5">Budget 2026</span>
+                <div class="p-2.5 rounded-xl bg-mercy-black border border-white/10 text-center">
+                    <span class="block text-xs sm:text-base font-black text-white">${active.budget}</span>
+                    <span class="block text-[10px] text-gray-400 font-medium mt-0.5">Budget</span>
                 </div>
-                <div class="p-3.5 rounded-2xl bg-mercy-black border border-white/10 text-center">
-                    <span class="block text-base sm:text-lg font-black text-mercy-accent">${active.people}</span>
-                    <span class="block text-[11px] text-gray-400 font-semibold mt-0.5">Soutenus</span>
+                <div class="p-2.5 rounded-xl bg-mercy-black border border-white/10 text-center">
+                    <span class="block text-xs sm:text-base font-black text-mercy-accent">${active.people}</span>
+                    <span class="block text-[10px] text-gray-400 font-medium mt-0.5">Aidés</span>
                 </div>
             </div>
 
-            <div class="p-4 rounded-2xl bg-white/5 border border-white/10 text-xs text-gray-200 mb-6">
-                <span class="font-extrabold text-mercy-accent uppercase block mb-1">Priorités opérationnelles :</span>
+            <div class="p-3 sm:p-3.5 rounded-xl bg-white/5 border border-white/10 text-[11px] sm:text-xs text-gray-200 mb-4">
+                <span class="font-bold text-mercy-accent uppercase block mb-1">Priorités terrain :</span>
                 ${active.focus}
             </div>
 
-            <button type="button" onclick="supportCountry('${active.name}')" class="w-full py-3.5 px-5 rounded-xl bg-mercy-green hover:bg-mercy-darkGreen text-white font-extrabold text-sm transition flex items-center justify-center gap-2 shadow-glow group">
-                <i class="fa-solid fa-hand-holding-heart group-hover:scale-110 transition-transform"></i>
+            <button type="button" onclick="supportCountry('${active.name}')" class="w-full py-2.5 sm:py-3 px-4 rounded-xl bg-mercy-green hover:bg-mercy-darkGreen text-white font-bold text-xs sm:text-sm transition flex items-center justify-center gap-2 shadow-glow group">
+                <i class="fa-solid fa-hand-holding-heart text-xs group-hover:scale-110 transition-transform"></i>
                 <span>Soutenir nos programmes — ${active.name}</span>
             </button>
         `;

@@ -7,26 +7,26 @@ export function renderThemes() {
     if (!grid) return;
 
     grid.innerHTML = THEMES_DATA.map((theme, index) => `
-        <article onclick="openThemeModal(${index})" class="cursor-pointer group bg-white rounded-3xl p-7 border border-gray-200 hover:border-mercy-green shadow-sm hover:shadow-soft transition-all duration-300 flex flex-col justify-between">
+        <article onclick="openThemeModal(${index})" class="cursor-pointer group bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-gray-200 hover:border-mercy-green shadow-sm hover:shadow-soft transition-all duration-300 flex flex-col justify-between">
             <div>
-                <div class="flex items-center justify-between mb-5">
-                    <div class="w-12 h-12 rounded-2xl bg-mercy-black group-hover:bg-mercy-green text-mercy-accent group-hover:text-white flex items-center justify-center text-xl transition-colors">
+                <div class="flex items-center justify-between mb-3.5 sm:mb-5">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-mercy-black group-hover:bg-mercy-green text-mercy-accent group-hover:text-white flex items-center justify-center text-lg sm:text-xl transition-colors">
                         <i class="fa-solid ${theme.icon}"></i>
                     </div>
-                    <span class="text-[11px] font-extrabold text-mercy-darkGreen bg-mercy-soft px-3 py-1 rounded-full">
+                    <span class="text-[10px] sm:text-[11px] font-extrabold text-mercy-darkGreen bg-mercy-soft px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full">
                         ${theme.metric}
                     </span>
                 </div>
-                <h3 class="text-xl font-black text-mercy-black group-hover:text-mercy-green transition-colors mb-2.5">
+                <h3 class="text-base sm:text-xl font-black text-mercy-black group-hover:text-mercy-green transition-colors mb-1.5 sm:mb-2 leading-snug">
                     ${theme.title}
                 </h3>
-                <p class="text-sm text-gray-600 leading-relaxed">
+                <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
                     ${theme.shortDesc}
                 </p>
             </div>
-            <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-xs font-extrabold text-mercy-black group-hover:text-mercy-green">
+            <div class="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-mercy-black group-hover:text-mercy-green">
                 <span>Explorer notre approche</span>
-                <i class="fa-solid fa-plus-circle text-base text-mercy-green group-hover:rotate-90 transition-transform"></i>
+                <i class="fa-solid fa-plus-circle text-sm sm:text-base text-mercy-green group-hover:rotate-90 transition-transform"></i>
             </div>
         </article>
     `).join('');

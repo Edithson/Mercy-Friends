@@ -67,3 +67,13 @@ test('home page uses local images and does not rely on external image CDNs', fun
         ->and(file_exists(public_path('images/placeholder-hero.svg')))->toBeTrue()
         ->and(file_exists(public_path('images/placeholder-project.svg')))->toBeTrue();
 });
+
+test('home page has streamlined navigation bar and mobile menu structure', function () {
+    $response = $this->get('/');
+
+    $response->assertSee('id="top-bar"', false);
+    $response->assertSee('hidden md:block', false);
+    $response->assertSee('id="main-nav"', false);
+    $response->assertSee('id="mobile-menu-btn"', false);
+    $response->assertSee('id="mobile-menu"', false);
+});

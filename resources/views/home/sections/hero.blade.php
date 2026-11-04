@@ -2,8 +2,8 @@
 <section id="accueil" class="relative bg-mercy-black text-white overflow-hidden">
     <!-- Image d'arrière-plan avec fallback -->
     <div class="absolute inset-0">
-        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1920&q=80"
-            onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/0B0F0C/22C55E?text=Mercy+Friends+Solidarite';"
+        <img src="{{ asset('images/hero-banner.jpg') }}"
+            onerror="this.onerror=null;this.src='{{ asset('images/placeholder-hero.svg') }}';"
             alt="Action humanitaire et solidarité auprès des enfants et communautés"
             class="w-full h-full object-cover object-center opacity-55">
         <div class="absolute inset-0 hero-gradient"></div>
@@ -50,8 +50,8 @@
                 <!-- Carte Urgence 1 -->
                 <article onclick="openEmergencyModal(0)" class="cursor-pointer group bg-mercy-charcoal/95 hover:bg-mercy-slate border border-white/10 hover:border-mercy-accent/60 rounded-2xl overflow-hidden shadow-xl transition-all duration-300 flex flex-col">
                     <div class="relative h-44 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=800&q=80"
-                            onerror="this.onerror=null;this.src='https://placehold.co/800x450/111814/22C55E?text=Urgence+Eau+Sahel';"
+                        <img src="{{ asset('images/project-water.jpg') }}"
+                            onerror="this.onerror=null;this.src='{{ asset('images/placeholder-project.svg') }}';"
                             alt="Accès à l'eau potable au Sahel"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         <span class="absolute top-3 left-3 px-3 py-1 rounded-lg bg-mercy-black/85 text-mercy-accent text-xs font-bold border border-mercy-accent/30">
@@ -75,8 +75,8 @@
                 <!-- Carte Urgence 2 -->
                 <article onclick="openEmergencyModal(1)" class="cursor-pointer group bg-mercy-charcoal/95 hover:bg-mercy-slate border border-white/10 hover:border-mercy-accent/60 rounded-2xl overflow-hidden shadow-xl transition-all duration-300 flex flex-col">
                     <div class="relative h-44 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=800&q=80"
-                            onerror="this.onerror=null;this.src='https://placehold.co/800x450/111814/22C55E?text=Nutrition+Enfants';"
+                        <img src="{{ asset('images/project-nutrition.jpg') }}"
+                            onerror="this.onerror=null;this.src='{{ asset('images/placeholder-project.svg') }}';"
                             alt="Soutien nutritionnel aux enfants déplacés"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         <span class="absolute top-3 left-3 px-3 py-1 rounded-lg bg-red-600/90 text-white text-xs font-bold">
@@ -100,8 +100,8 @@
                 <!-- Carte Urgence 3 -->
                 <article onclick="openEmergencyModal(2)" class="cursor-pointer group bg-mercy-charcoal/95 hover:bg-mercy-slate border border-white/10 hover:border-mercy-accent/60 rounded-2xl overflow-hidden shadow-xl transition-all duration-300 flex flex-col">
                     <div class="relative h-44 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=800&q=80"
-                            onerror="this.onerror=null;this.src='https://placehold.co/800x450/111814/22C55E?text=Agroecologie+Cameroun+RDC';"
+                        <img src="{{ asset('images/project-agroforestry.jpg') }}"
+                            onerror="this.onerror=null;this.src='{{ asset('images/placeholder-project.svg') }}';"
                             alt="Agroécologie villageoise au Cameroun et en RDC"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         <span class="absolute top-3 left-3 px-3 py-1 rounded-lg bg-mercy-green text-white text-xs font-bold">

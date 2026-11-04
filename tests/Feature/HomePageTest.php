@@ -46,3 +46,24 @@ test('home page renders interactive vector world map with 24 intervention countr
         $response->assertSee('id="pin-'.$code.'"', false);
     }
 });
+
+test('home page uses local images and does not rely on external image CDNs', function () {
+    $response = $this->get('/');
+
+    $response->assertDontSee('images.unsplash.com');
+    $response->assertDontSee('placehold.co');
+    $response->assertSee('/images/hero-banner.jpg');
+    $response->assertSee('/images/project-water.jpg');
+    $response->assertSee('/images/project-nutrition.jpg');
+    $response->assertSee('/images/project-agroforestry.jpg');
+
+    expect(file_exists(public_path('images/hero-banner.jpg')))->toBeTrue()
+        ->and(file_exists(public_path('images/project-water.jpg')))->toBeTrue()
+        ->and(file_exists(public_path('images/project-nutrition.jpg')))->toBeTrue()
+        ->and(file_exists(public_path('images/project-agroforestry.jpg')))->toBeTrue()
+        ->and(file_exists(public_path('images/project-education.jpg')))->toBeTrue()
+        ->and(file_exists(public_path('images/project-health.jpg')))->toBeTrue()
+        ->and(file_exists(public_path('images/project-empowerment.jpg')))->toBeTrue()
+        ->and(file_exists(public_path('images/placeholder-hero.svg')))->toBeTrue()
+        ->and(file_exists(public_path('images/placeholder-project.svg')))->toBeTrue();
+});

@@ -8,7 +8,7 @@ export const PROJECTS_DATA = [
         progress: 82,
         goal: '240 000 €',
         beneficiaries: '48 000 villageois',
-        image: 'https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=800&q=80',
+        image: '/images/project-water.jpg',
         summary: 'Installation de châteaux d\'eau solaires autonomes dans 32 villages ruraux, réduisant de 4 heures par jour la corvée d\'eau des femmes et des jeunes filles.',
         story: `
             <p>Dans la région de l'Extrême-Nord du Cameroun, la saison sèche assèche les puits traditionnels pendant plus de sept mois, obligeant les femmes et les enfants à parcourir plusieurs kilomètres pour puiser une eau souvent impropre à la consommation.</p>
@@ -32,7 +32,7 @@ export const PROJECTS_DATA = [
         progress: 68,
         goal: '310 000 €',
         beneficiaries: '34 500 enfants & mères',
-        image: 'https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=800&q=80',
+        image: '/images/project-nutrition.jpg',
         summary: 'Dépistage précoce de la malnutrition infantile aiguë et appui à 14 ateliers coopératifs produisant des farines infantiles nutritives à base de maïs, soja et moringa locaux.',
         story: `
             <p>Pour briser durablement le cycle de la malnutrition infantile en RD Congo, Mercy Friends associe le soin médical gratuit immédiat à la fabrication locale d'aliments nutritifs par les mères elles-mêmes.</p>
@@ -52,7 +52,7 @@ export const PROJECTS_DATA = [
         progress: 91,
         goal: '185 000 €',
         beneficiaries: '27 000 producteurs',
-        image: 'https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=800&q=80',
+        image: '/images/project-agroforestry.jpg',
         summary: 'Régénération de 3 400 hectares de terres encroûtées grâce aux techniques traditionnelles de retenue d\'eau de pluie et multiplication de semences paysannes de mil et sorgho.',
         story: `
             <p>Sur des sols devenus stériles et durs comme la pierre, creuser des demi-lunes enrichies en compost organique permet de capter chaque goutte des premières pluies et de doubler les rendements céréaliers dès la première récolte.</p>
@@ -72,7 +72,7 @@ export const PROJECTS_DATA = [
         progress: 54,
         goal: '450 000 €',
         beneficiaries: '85 000 réfugiés',
-        image: 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=800&q=80',
+        image: '/images/project-education.jpg',
         summary: 'Stations de potabilisation d\'eau d\'urgence, kits d\'hygiène dignité et rations alimentaires de survie pour les familles ayant tout perdu.',
         story: `
             <p>Dans les zones d'accueil saturées à la frontière tchado-soudanaise, l'accès à 15 litres d'eau potable par personne et par jour est une question de survie immédiate pour éviter les épidémies de choléra.</p>
@@ -92,7 +92,7 @@ export const PROJECTS_DATA = [
         progress: 77,
         goal: '160 000 €',
         beneficiaries: '14 200 élèves',
-        image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80',
+        image: '/images/project-health.jpg',
         summary: 'Un repas chaud équilibré chaque midi dans 38 écoles primaires rurales, approvisionné directement auprès des petits agriculteurs voisins.',
         story: `
             <p>Lors des périodes de sécheresse à Madagascar, la cantine scolaire représente souvent le seul repas complet de la journée pour les enfants, évitant le décrochage scolaire tout en garantissant un débouché stable aux paysans locaux.</p>
@@ -111,7 +111,7 @@ export const PROJECTS_DATA = [
         progress: 100,
         goal: '195 000 €',
         beneficiaries: '19 800 habitants',
-        image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=800&q=80',
+        image: '/images/project-empowerment.jpg',
         summary: 'Programme désormais autogéré par 9 organisations paysannes haïtiennes : terrasses anti-érosion, stockage de racines nutritives et citernes d\'eau.',
         story: `
             <p>Après 36 mois d'accompagnement agronomique et matériel, les 9 coopératives partenaires fonctionnent aujourd'hui en totale autonomie financière et forment à leur tour les villages voisins.</p>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+    <defs>
+        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#0B0F0C" />
+            <stop offset="50%" stop-color="#141E17" />
+            <stop offset="100%" stop-color="#080C0A" />
+        </linearGradient>
+        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(34, 197, 94, 0.05)" stroke-width="1"/>
+        </pattern>
+    </defs>
+    <rect width="800" height="450" fill="url(#bgGrad)" />
+    <rect width="800" height="450" fill="url(#grid)" />
+    
+    <g transform="translate(400, 200)" text-anchor="middle">
+        <!-- Logo Emblem -->
+        <circle cx="0" cy="-25" r="36" fill="rgba(34, 197, 94, 0.15)" stroke="#22C55E" stroke-width="2" />
+        <path d="M -14 -25 C -14 -33, -3 -37, 0 -28 C 3 -37, 14 -33, 14 -25 C 14 -17, 0 -8, 0 -8 C 0 -8, -14 -17, -14 -25 Z" fill="#22C55E" />
+        
+        <!-- Text -->
+        <text x="0" y="35" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="800" letter-spacing="1">MERCY FRIENDS</text>
+        <text x="0" y="60" fill="#22C55E" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" letter-spacing="2">TERRAIN &amp; SOLIDARITÉ</text>
+    </g>
+</svg>

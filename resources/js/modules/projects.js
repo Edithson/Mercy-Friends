@@ -38,7 +38,7 @@ export function renderProjects() {
             <article class="bg-mercy-surface border border-gray-200 hover:border-mercy-green rounded-3xl overflow-hidden shadow-sm hover:shadow-soft transition-all duration-300 flex flex-col">
                 <div class="relative h-52 overflow-hidden">
                     <img src="${p.image}"
-                        onerror="this.onerror=null;this.src='https://placehold.co/800x500/111814/22C55E?text=Projet+Mercy+Friends';"
+                        onerror="this.onerror=null;this.src='/images/placeholder-project.svg';"
                         alt="${p.title}"
                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
                     <div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
@@ -93,7 +93,7 @@ export function openProjectModal(projectId) {
         `${p.country} • ${p.theme}`,
         p.title,
         `
-            <img src="${p.image}" onerror="this.onerror=null;this.src='https://placehold.co/800x420/111814/22C55E?text=Terrain+Mercy+Friends';" alt="${p.title}" class="w-full h-56 object-cover rounded-2xl mb-4">
+            <img src="${p.image}" onerror="this.onerror=null;this.src='/images/placeholder-project.svg';" alt="${p.title}" class="w-full h-56 object-cover rounded-2xl mb-4">
             <div class="grid grid-cols-3 gap-3 mb-4 text-center">
                 <div class="p-3 rounded-xl bg-mercy-surface border border-gray-200">
                     <span class="block text-xs text-gray-500">Statut</span>

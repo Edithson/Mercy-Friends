@@ -1,0 +1,89 @@
+@import 'tailwindcss';
+
+@source '../views/**/*.blade.php';
+@source '../js/**/*.js';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+    --color-mercy-black: #0B0F0C;
+    --color-mercy-charcoal: #111814;
+    --color-mercy-slate: #1A241E;
+    --color-mercy-green: #16A34A;
+    --color-mercy-darkGreen: #15803D;
+    --color-mercy-dark-green: #15803D;
+    --color-mercy-deepGreen: #14532D;
+    --color-mercy-deep-green: #14532D;
+    --color-mercy-accent: #22C55E;
+    --color-mercy-soft: #F0FDF4;
+    --color-mercy-surface: #F8FAF9;
+
+    --shadow-soft: 0 10px 30px -5px rgba(11, 15, 12, 0.08);
+    --shadow-glow: 0 10px 25px -5px rgba(22, 163, 74, 0.35);
+}
+
+/* Styles personnalisés Mercy Friends */
+body {
+    background-color: #F8FAF9;
+    color: #0B0F0C;
+    overflow-x: hidden;
+}
+
+.hero-gradient {
+    background: linear-gradient(105deg, rgba(11, 15, 12, 0.93) 0%, rgba(17, 24, 20, 0.80) 52%, rgba(20, 83, 45, 0.55) 100%);
+}
+
+.map-dot-pulse {
+    animation: pulseRing 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulseRing {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.9;
+    }
+    50% {
+        transform: scale(1.45);
+        opacity: 0.35;
+    }
+}
+
+/* Scrollbar discrète pour les modales */
+.custom-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+.custom-scroll::-webkit-scrollbar-track {
+    background: #f1f5f2;
+    border-radius: 8px;
+}
+.custom-scroll::-webkit-scrollbar-thumb {
+    background: #16A34A;
+    border-radius: 8px;
+}
+
+/* Navigation active */
+.nav-link-active {
+    color: #16A34A !important;
+    position: relative;
+}
+.nav-link-active::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: #16A34A;
+    border-radius: 999px;
+}
+
+/* Accessibilité et confinement du scroll pour les modales */
+dialog:modal {
+    overscroll-behavior: contain;
+}
+dialog::backdrop {
+    overflow: hidden;
+    overscroll-behavior: contain;
+}
